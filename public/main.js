@@ -18,7 +18,7 @@ var getTempVal = function() {
       temp = Math.round(temp * 100) / 100;
       var date = new Date();
       date = date.getDate() + '/' + (date.getMonth()+1) + '/' +  date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-      var city = new City(name, temp, date);
+      var city = new City(name, temp, date); //the code up until here should be in the weatherApi 
       var cities = weatherRepository.addWeatherReport(city);
       weatherRender.renderReport(cities);
       var city = $('.getTempVal').val("");
@@ -47,13 +47,13 @@ $('.cities').on('click','.commentBtn', function () {
   var cities = weatherRepository.addComment(cityID,comment);
   weatherRepository.saveToLocalStorage();
   weatherRender.renderReport(cities);
-  $city.find('.commentVal').val("");
+  $city.find('.commentVal').val(""); // should be in the render class
 });
 
 $('.cities').on('click','.deleteCity', function () {
   var cityID = $(this).closest(".city").data().id;
   var cities = weatherRepository.removeWeatherReport(cityID);
-  weatherRepository.saveToLocalStorage();
+  weatherRepository.saveToLocalStorage(); // shoud be poart of the removeWeatherReport function
   weatherRender.renderReport(cities);
 });
 
@@ -61,7 +61,7 @@ $('.cities').on('click','.deleteComment', function () {
   var cityID = $(this).closest(".city").data().id;
   var commentID = $(this).closest(".comment").data().comment_id;
   var cities = weatherRepository.removeWeatherReportComment(cityID,commentID);
-  weatherRepository.saveToLocalStorage();
+  weatherRepository.saveToLocalStorage(); // should be part of te data layer.
   weatherRender.renderReport(cities);
 });
 
