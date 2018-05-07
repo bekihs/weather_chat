@@ -3,7 +3,9 @@ class WeatherApi {
     this.apiUrl="http://api.openweathermap.org/data/2.5/weather?APPID=4573c189d467ca1814c1c10000060792&q="
   }
   getWeather(cityName){
-    return $.ajax( this.apiUrl + cityName );
+    return $.ajax( this.apiUrl + cityName ).then(function(data){
+      return data;//new City();// You should return new City()  - data that is known to all.
+    });
   }
 }
 export {WeatherApi};
